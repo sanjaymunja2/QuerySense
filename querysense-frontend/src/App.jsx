@@ -1,30 +1,7 @@
 import { useState } from "react";
 import QueryInputPanel from "./components/QueryInputPanel";
 import ResultPanel from "./components/ResultPanel";
-
-const mockResponse = {
-  score: 65,
-  issues: [
-    {
-      severity: "CRITICAL",
-      title: "SELECT * Detected",
-      description: "Selecting all columns transfers unnecessary data.",
-      suggestion: "Specify only required columns.",
-      affectedClause: "SELECT"
-    },
-    {
-      severity: "WARNING",
-      title: "No LIMIT Clause",
-      description: "Query may return excessive rows.",
-      suggestion: "Consider adding LIMIT for pagination.",
-      affectedClause: "SELECT"
-    }
-  ],
-  originalQuery: "SELECT * FROM users",
-  optimizedQuery: "SELECT id, name FROM users LIMIT 100",
-  explanation:
-    "Replaced SELECT * with specific columns. Added LIMIT clause to prevent full table scan and reduce data transfer."
-};
+import { analyzeQuery } from "./services/api";
 
 function App() {
   const [result, setResult] = useState(null);
@@ -42,10 +19,17 @@ function App() {
 
     setLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setResult(mockResponse);
-    setLoading(false);
+    try {
+      const analysis = await analyzeQuery({ query: data.query });
+      setResult({
+        ...analysis,
+        issues: analysis.issues || []
+      });
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -64,8 +48,8 @@ function App() {
             </p>
           </div>
 
-          <div className="rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-slate-300">
-            Mock analysis mode
+          <div className="rounded-lg border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+            Backend analysis mode
           </div>
         </header>
 
