@@ -1,4 +1,4 @@
-# QuerySense — Intelligent SQL Query Analyzer
+# QuerySense - Intelligent SQL Query Analyzer
 
 Analyze SQL queries before they hit production.
 
@@ -10,7 +10,7 @@ QuerySense detects SQL anti-patterns, missing indexes, inefficient query structu
 
 Frontend: https://your-vercel-url.vercel.app
 
-Backend API: https://your-railway-url.up.railway.app
+Backend API: https://querysense-production-613a.up.railway.app
 
 ---
 
@@ -33,17 +33,20 @@ Backend API: https://your-railway-url.up.railway.app
 ## Tech Stack
 
 ### Backend
+
 - Java 17
 - Spring Boot 3
 - Maven
 - JSQLParser
 
 ### Frontend
-- React 18
+
+- React
 - Vite
 - Axios
 
 ### Deployment
+
 - Railway
 - Vercel
 
@@ -53,19 +56,19 @@ Backend API: https://your-railway-url.up.railway.app
 
 React Frontend
 
-↓
+->
 
 Spring Boot REST API
 
-↓
+->
 
 JSQLParser
 
-↓
+->
 
 Rule Engine
 
-↓
+->
 
 Analysis Report
 
@@ -107,7 +110,7 @@ mvn spring-boot:run
 
 Runs on:
 
-```
+```text
 http://localhost:8080
 ```
 
@@ -121,7 +124,7 @@ npm run dev
 
 Runs on:
 
-```
+```text
 http://localhost:5173
 ```
 
@@ -131,15 +134,15 @@ http://localhost:5173
 
 ### Query Input
 
-(Add screenshot here)
+![Input](screenshots/input.png)
 
 ### Analysis Result
 
-(Add screenshot here)
+![Result](screenshots/result.png)
 
 ### Query Comparison
 
-(Add screenshot here)
+![Comparison](screenshots/comparison.png)
 
 ---
 
