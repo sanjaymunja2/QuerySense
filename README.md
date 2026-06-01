@@ -8,7 +8,7 @@ QuerySense detects SQL anti-patterns, missing indexes, inefficient query structu
 
 ## Live Demo
 
-Frontend: https://your-vercel-url.vercel.app
+Frontend: https://query-sense-delta.vercel.app/
 
 Backend API: https://querysense-production-613a.up.railway.app
 
@@ -54,23 +54,21 @@ Backend API: https://querysense-production-613a.up.railway.app
 
 ## Architecture
 
+```text
 React Frontend
-
-->
-
+      │
+      ▼
 Spring Boot REST API
-
-->
-
+      │
+      ▼
 JSQLParser
-
-->
-
+      │
+      ▼
 Rule Engine
-
-->
-
+      │
+      ▼
 Analysis Report
+```
 
 ---
 
@@ -92,7 +90,12 @@ Response
 ```json
 {
   "score": 75,
-  "issues": [],
+  "issues": [
+    {
+      "title": "SELECT * Detected",
+      "severity": "CRITICAL"
+    }
+  ],
   "optimizedQuery": "SELECT id, amount FROM orders WHERE customer_id = 5"
 }
 ```
@@ -134,31 +137,66 @@ http://localhost:5173
 
 ### Query Input
 
-![Input](screenshots/input.png)
+![Query Input](screenshots/input.png)
 
-### Analysis Result
+### Analysis Results
 
-![Result](screenshots/result.png)
+![Analysis Results](screenshots/result.png)
 
 ### Query Comparison
 
-![Comparison](screenshots/comparison.png)
+![Query Comparison](screenshots/comparison.png)
+
+---
+
+## Project Structure
+
+```text
+querysense-backend/
+├── controller/
+├── service/
+├── rules/
+├── model/
+└── config/
+
+querysense-frontend/
+├── components/
+├── services/
+└── App.jsx
+```
 
 ---
 
 ## Future Improvements
 
-- MySQL EXPLAIN plan integration
+- MySQL EXPLAIN Plan integration
 - VS Code extension
 - GitHub Action integration
 - Batch query analysis
+- Query performance benchmarking
+- Database-specific optimization recommendations
 
 ---
 
 ## Author
 
-Sanju
+**Sanju**
 
 BCA, VIT-AP University
 
 2026
+
+---
+
+## Why QuerySense?
+
+Modern applications often fail because of inefficient database queries rather than incorrect business logic. QuerySense helps developers identify performance issues before deployment by analyzing SQL queries and providing actionable recommendations.
+
+This project demonstrates:
+
+- Java backend development
+- Spring Boot REST API development
+- SQL parsing with JSQLParser
+- Rule Engine design pattern
+- React frontend development
+- Full-stack deployment using Railway and Vercel
