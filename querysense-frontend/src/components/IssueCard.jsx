@@ -2,33 +2,38 @@ function IssueCard({ issue }) {
   const getSeverityClass = (severity) => {
     switch (severity) {
       case "CRITICAL":
-        return "border-red-400/30 bg-red-500/10 text-red-200";
+        return "border-[#DC2626]/20 bg-[#DC2626]/10 text-[#DC2626]";
 
       case "WARNING":
-        return "border-amber-400/30 bg-amber-500/10 text-amber-200";
+        return "border-[#D4860A]/25 bg-[#D4860A]/10 text-[#9A5C00]";
 
       default:
-        return "border-blue-400/30 bg-blue-500/10 text-blue-200";
+        return "border-[#B36F05]/20 bg-[#B36F05]/10 text-[#8C5603]";
     }
   };
 
   return (
-    <div className="rounded-xl border border-white/10 bg-[#111827] p-5 shadow-lg shadow-black/20 transition duration-200 hover:-translate-y-1 hover:border-blue-400/30 hover:shadow-blue-500/10">
-      <div className={`mb-4 inline-flex rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider ${getSeverityClass(issue.severity)}`}>
-        {issue.severity}
+    <div className="group rounded-2xl border border-[#E2DDD5] bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-[#B36F05]/35 hover:shadow-lg hover:shadow-[#1C1814]/[0.07]">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className={`inline-flex rounded-full border px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${getSeverityClass(issue.severity)}`}>
+          {issue.severity}
+        </div>
+        <span className="text-lg leading-none text-[#B36F05] transition duration-200 group-hover:translate-x-0.5">
+          +
+        </span>
       </div>
 
-      <h3 className="text-lg font-bold text-white">{issue.title}</h3>
+      <h3 className="text-lg font-black text-[#1C1814]">{issue.title}</h3>
 
-      <p className="mt-3 text-sm leading-6 text-slate-400">
+      <p className="mt-3 text-sm leading-6 text-[#645E55]">
         {issue.description}
       </p>
 
-      <p className="mt-3 rounded-lg bg-white/[0.03] p-3 text-sm leading-6 text-slate-300">
-        <span className="font-semibold text-blue-300">Suggestion:</span> {issue.suggestion}
+      <p className="mt-4 rounded-xl border border-[#E2DDD5] bg-[#F5F4F0] p-3 text-sm leading-6 text-[#645E55]">
+        <span className="font-black text-[#8C5603]">Suggestion:</span> {issue.suggestion}
       </p>
 
-      <div className="mt-4 inline-flex rounded-md border border-slate-700 bg-[#0B0F19] px-2.5 py-1 font-mono text-xs text-slate-300">
+      <div className="mt-4 inline-flex rounded-lg border border-[#E2DDD5] bg-[#FFFDF9] px-3 py-1.5 font-mono text-xs font-semibold text-[#645E55]">
         {issue.affectedClause}
       </div>
     </div>
