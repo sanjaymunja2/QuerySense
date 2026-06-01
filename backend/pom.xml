@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.querysense</groupId>
-	<artifactId>querysense</artifactId>
+	<artifactId>querysense-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>QuerySense API</name>
+	<description>Spring Boot backend for QuerySense</description>
 	<url/>
 	<licenses>
 		<license/>
